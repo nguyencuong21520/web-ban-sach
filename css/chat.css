@@ -1,0 +1,123 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.chat_container > * {
+  box-sizing: border-box;
+}
+.chat_container {
+  width: 350px;
+  height: 500px;
+  background-color: white;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  bottom: 0;
+  right: 5%;
+  z-index: 999;
+  padding: 10px 10px;
+  border-top-left-radius: 15px;
+  border-top-right-radius: 15px;
+  display:none;
+}
+.chat_show{
+  position: fixed;
+  right: 5%;
+  z-index: 99;
+  bottom: 4%;
+}
+
+.chat_header {
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.chat_header .chat_name {
+  width: 90%;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
+}
+.chat_header .chat_close {
+  width: 10%;
+  color: rgba(50, 50, 50, 0.5);
+  cursor: pointer;
+}
+.chat_header .chat_close:hover {
+  color: rgba(50, 50, 50, 0.8);
+  transition: 0.5s;
+}
+.chat_container hr {
+  border-top: 2px solid rgba(170, 170, 170, 0.5);
+  margin: 10px;
+}
+
+.chat_input form {
+  display: flex;
+  justify-content: space-between;
+  height: 40px;
+}
+.chat_input form input {
+  width: 80%;
+  border: 1.5px solid #54a0ff;
+}
+.chat_input form input:focus {
+  border: 2px solid #2e86de;
+  outline: none;
+}
+.chat_input form input {
+  width: 80%;
+}
+.chat_input form button {
+  width: 15%;
+  border: none;
+  background-color: transparent;
+  color: #54a0ff;
+}
+.chat_input form button:hover {
+  color: #2e86de;
+  transition: 0.5s;
+}
+/* chat-body */
+.chat_body {
+  height: 390px;
+  display: flex;
+  flex-direction: column;
+  padding: 0px 15px;
+  overflow-y: scroll;
+}
+.chat_body .chat_item {
+  width: fit-content;
+  max-width: 65%;
+  padding: 10px;
+  border: 1px solid #4482ff;
+  border-radius: 5px;
+  word-break: break-word;
+  position: relative;
+  margin-top: 5px;
+
+}
+
+ .chat_body .chat_owner {
+  background-color: #4482ff;
+  color: white;
+  align-self: flex-end;
+} 
+
+/* .chat_body .chat_item > span {
+    position:absolute;
+    left:0;
+  padding: 10px;
+  border: 1px solid #4482ff;
+  border-radius: 5px;
+  word-break: break-word;
+  max-width: 60%;
+} */
+/* / */
+
+/* .chat_item{
+    display:block;
+    height:30px;
+    width: 100%;
+}
+.chat_item span{
+    display: inline-block;
+    float: right; 
+} */

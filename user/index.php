@@ -108,6 +108,11 @@ session_start();
           <a class="nav-link" href="logoutfetch.php"><button type="button" class="btn btn-danger bt"
               style="width:100px;margin-left: 10px;">Đăng xuất</button></a>
         </li>
+        <li id="chat_btn" class="nav-item">
+          <a class="nav-link"><button type="button" class="btn btn-warning"
+              style="width:100px;margin-left: 10px;">Chat</button></a>
+        </li>
+        
       </ul>
     </nav>
     <section class="row">
@@ -674,6 +679,29 @@ session_start();
     let email = "<?php echo $_SESSION['useremail']; ?>"
     console.log(email)
 
+    let currentConversation
+
+    document.getElementById("chat_btn").addEventListener("click",()=>{
+      if(email == "xuanquy1120@gmail.com"){
+        window.open('../chat/chat.html','_blank');
+      }else{
+        alert("Admin với có thể xem")
+      }
+    })
+
+    let getData = async () => {
+      let result = await firebase.firestore().collection("conversations").where('users', 'array-contains', email).get();
+      console.log("result",result);
+      let data = await getDataFromDocs(result.docs);
+      currentConversation = data[0]
+      if(currentConversation){
+
+        renderChat(currentConversation, email);
+      }
+    };
+
+    getData();
+
     let renderChat = (data, userEmail)=>{
       let dom = document.querySelector(".chat_body")
       dom.innerHTML = ''
@@ -697,19 +725,18 @@ session_start();
         content: chat,
         owner: email
       } 
-      chat_update(data, "PnB92pHFq3kw8z6xnrkJ")
+
+      if(currentConversation){
+        chat_update(data, currentConversation.id)
       chat_input.chat.value = ''
+      }else{
+        addConversation(chat)
+        getData();
+      }
+
     }
 
-    let getData = async () => {
-      let result = await firebase.firestore().collection("conversations").get();
-      console.log(result);
-      let data = await getDataFromDocs(result.docs);
-      renderChat(data[0], email);
-      console.log(data);
-    };
 
-    getData();
 
     let chat_update = async (data, id)=>{
       await firebase.firestore()
@@ -718,6 +745,21 @@ session_start();
                  .update({
                      messages: firebase.firestore.FieldValue.arrayUnion(data)
                  })
+    }
+
+    let addConversation = async (chat)=>{
+      let conversation = {
+             users: ["xuanquy1120@gmail.com",email],
+             message: [
+               {
+                 content: chat,
+                 owner: email,
+               }
+             ],
+         }
+         await firebase.firestore()
+             .collection('conversations')
+             .add(conversation)
     }
 
     let getDataFromDoc = (doc) => {

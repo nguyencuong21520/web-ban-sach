@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style_chat.css">
+  </head>
+  <body>
+    <script src='https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js'></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+         https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src='https://www.gstatic.com/firebasejs/8.6.3/firebase-analytics.js'></script>
+    <script src='https://www.gstatic.com/firebasejs/8.6.3/firebase-firestore.js'></script>
+    
+    
+    <script>
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: 'AIzaSyCoxTdABowhUkOPVUm1k9rjV4WcgMpqZS4',
+        authDomain: 'web-ban-sach-12ba5.firebaseapp.com',
+        projectId: 'web-ban-sach-12ba5',
+        storageBucket: 'web-ban-sach-12ba5.appspot.com',
+        messagingSenderId: '617623741686',
+        appId: '1:617623741686:web:a64d30f72b4cff2c7c78d7',
+        measurementId: 'G-8RR744JLNX'
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+    </script>
+
+    <section class="chat-container">
+      <!-- aside-left -->
+      <div class="aside-left">
+          <h1>Danh sách tin nhắn</h1>
+        <div class="list-conversation"></div>
+      </div>
+      <div class="current-conversation">
+        <div class="list-message-chat"></div>
+        <form class="form-add-message-chat">
+          <div class="input-wrapper">
+            <input
+              type="text"
+              name="message"
+              placeholder="Nhập tin nhắn ..."
+            />
+          </div>
+          <button id="aaa" class="aaa" type="submit">Gửi</button>
+        </form>
+      </div>
+      <!-- aside-right -->
+      <div class="aside-right">
+        <div class="details-current-conversation"></div>
+      </div>
+    </section>
+    <script src="./script.js"></script>
+  </body>
+</html>
